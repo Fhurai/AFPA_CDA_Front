@@ -1,0 +1,117 @@
+<!doctype html>
+
+<html lang="fr">
+<head>
+	<meta charset="utf-8">
+	<meta content="width=device-width, initial-scale=1" name="viewport">
+	<meta content="Index page for Front" name="description"/>
+	<title>Accueil | Gestion Clients</title>
+	<link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" rel="stylesheet">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"/>
+	<link href="assets/css/app.min.css" rel="stylesheet">
+</head>
+
+<body aria-label="Page template">
+
+<!-- Header -->
+<header>
+	<nav aria-controls="navbarNav"
+			 aria-describedby="navbarNav" aria-label="navbar-light bg-light" class="navbar navbar-expand-lg fixed-top">
+		<div class="container-fluid" id="navbarNav">
+			<!-- Partie visible, desktop & smartphone -->
+			<a aria-label="Brand label" class="navbar-brand" href="./index.html">Gestion clients</a>
+			<button aria-controls="offcanvasNavbar" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#offcanvasNavbar" data-bs-toggle="offcanvas" type="button">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<!-- Menu -->
+			<div aria-labelledby="offcanvasNavbarLabel" class="offcanvas offcanvas-end" id="offcanvasNavbar" tabindex="-1">
+				<div class="offcanvas-header">
+					<h5 class="offcanvas-title" id="offcanvasNavbarLabel">Gestion clients</h5>
+					<button aria-label="Close" class="btn-close" data-bs-dismiss="offcanvas"
+									type="button"></button>
+				</div>
+				<div class="offcanvas-body">
+					<ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+						<li class="nav-item" aria-label="Page d'accueil">
+							<a aria-current="page" class="nav-link active" href="index.html" title="Accueil de l'application">
+								<div class="material-symbols-outlined">home</div>
+								<div>Accueil</div>
+							</a>
+						</li>
+						<li class="nav-item" aria-label="Page des clients">
+							<a aria-current="page" class="nav-link active" href="clients/index.html" title="Accueil de l'application">
+								<div class="material-symbols-outlined">contact_page</div>
+								<div>Clients</div>
+							</a>
+						</li>
+						<li class="nav-item" aria-label="Page des clients">
+							<a aria-current="page" class="nav-link active" href=prospects/index.html" title="Accueil de l'application">
+								<div class="material-symbols-outlined">perm_contact_calendar</div>
+								<div>Prospects</div>
+							</a>
+						</li>
+					</ul>
+					<form class="d-flex mt-3" role="search">
+						<input aria-label="Search" class="form-control me-2" placeholder="Rechercher..." type="search">
+						<button class="btn btn-primary" type="submit">
+							Rechercher
+						</button>
+					</form>
+					<hr>
+					<ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+						<li class="nav-item" aria-label="Page de connexion">
+							<a aria-current="page" class="nav-link active" href="login/connexion.html" title="Login">
+								<div class="material-symbols-outlined">login</div>
+								<div>Connexion</div>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<ul></ul>
+			</div>
+		</div>
+	</nav>
+</header>
+
+<!-- Main content -->
+<main>
+	<article aria-label="Page content template">
+		<header aria-label="Page header">
+			<h1 aria-label="Page title">Bienvenue</h1>
+		</header>
+		<section aria-label="Page content part" class="container" id="content" role="main">
+			Vous trouverez ici les outils pour permettre de créer un client, un prospect et de les modifier en fonction de l'avancée du client.
+		</section>
+	</article>
+</main>
+
+<!-- Footer -->
+<footer aria-label="Footer">
+	<div aria-label="Footer content" class="container-fluid">
+		<div class="row" id="footer" role="contentinfo">
+			<div aria-label="Used technologies" class="col-4">
+				Done with <a href="https://getbootstrap.com/"
+										 target="_blank">Bootstrap</a>
+			</div>
+			<div aria-label="Follow us link" class="col-4">
+				<a href="contact.html">Nous contacter</a>
+			</div>
+			<div aria-label="Accessibility percentage" class="col-4">
+				Accessibilité : 99%.
+			</div>
+			<div aria-label="Sitemap" class="col-4">
+				<a href="sitemap.xml">Plan du site</a>
+			</div>
+			<div aria-label="GCU" class="col-4">
+				CGU
+			</div>
+		</div>
+	</div>
+</footer>
+
+<!-- JS scripts -->
+<script crossorigin="anonymous" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
