@@ -1,0 +1,141 @@
+div.hovertable {
+	background-color: var(--gc-primary-contrast-color);
+	color: var(--gc-primary-color);
+	padding: 0.5rem;
+	display: grid;
+	width: auto;
+	text-align: center;
+	border-radius: 0.5rem;
+	overflow: auto;
+
+	div.hovertable-head {
+		div.hovertable-row:first-child {
+
+			> .hovertable-cell {
+				box-shadow: 2px 2px 2px grey;
+				background-color: var(--gc-primary-color);
+				color: var(--gc-primary-contrast-color);
+			}
+		}
+
+		div.hovertable-row:last-child {
+			background-color: transparent;
+			color: transparent;
+
+			div.hovertable-cell {
+
+				> input, select {
+					background-color: transparent;
+					color: var(--gc-primary-color);
+					border: transparent;
+                    width: 100%;
+                    text-align: center;
+                    color-scheme: dark;
+
+					&:placeholder-shown {
+						color: var(--gc-primary-color);
+						filter: brightness(var(--gc-placeholder-brightness));
+					}
+
+					&:focus-visible {
+						outline: none;
+						border-bottom: 1px solid var(--gc-primary-color);
+					}
+
+                    option{
+                        background-color: var(--gc-primary-contrast-color);
+                        color: var(--gc-primary-color);
+                    }
+				}
+			}
+		}
+	}
+
+	div.hovertable-body {
+
+		div.hovertable-row {
+
+			div.hovertable-cell {
+				background-color: var(--gc-primary-color);
+				color: var(--gc-primary-contrast-color);
+				box-shadow: 2px 2px 2px grey;
+
+                &.boolean{
+                    color: var(--gc-white);
+
+                    &.false{
+                        background-color: var(--gc-false-color);
+
+                        &:after{
+                            content: "Non";
+                        }
+                    }
+
+                    &.true{
+                        background-color: var(--gc-true-color);
+
+                        &:after{
+                            content: "Oui";
+                        }
+                    }
+                }
+
+                a{
+                    span{
+                        &.warning{
+                            color: var(--gc-warning-color);
+                        }
+
+                        &.danger{
+                            color: var(--gc-danger-color);
+                        }
+                    }
+                }
+			}
+
+            &[hidden]{
+                display: none;
+            }
+		}
+	}
+
+	div.hovertable-row {
+		display: inline-flex;
+		margin: 0.25rem 0;
+		border-radius: 0.5rem;
+		width: 100%;
+		justify-content: center;
+
+		div.hovertable-cell {
+			display: inline-block;
+			width: 12.5rem;
+			text-align: right;
+			border: 1px solid var(--gc-primary-contrast-color);
+			padding: 0 0.5rem;
+
+			&.presents-number, &.search-number, &.edit-number {
+				width: 5rem;
+
+				&.long {
+					width: 12rem;
+
+					> input {
+						width: 12rem;
+					}
+				}
+
+				> input {
+					width: 5rem;
+				}
+			}
+
+			&:first-child {
+				border-radius: 0.5rem 0 0 0.5rem;
+			}
+
+			&:last-child {
+				border-radius: 0 0.5rem 0.5rem 0;
+			}
+		}
+	}
+}
