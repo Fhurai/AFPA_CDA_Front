@@ -91,7 +91,7 @@ export default class Form extends React.Component<FormProps> {
            * Partie client
            */}
           {typePage !== "contact" && client !== null ?
-            <Input type={"number"} name={"nbEmployes"} className={"col-md-6"} disabled={disabled}
+            <Input type={"number"} name={"chiffreAffaires"} className={"col-md-6"} disabled={disabled}
                    step={0.01} value={client?.chiffreAffaires.toString()}/> : ""}
           {typePage !== "contact" && client !== null ?
             <Input type={"number"} name={"nbEmployes"} className={"col-md-6"} disabled={disabled} step={1}
