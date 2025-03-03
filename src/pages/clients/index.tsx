@@ -4,18 +4,18 @@ import Footer from "../../components/footer/footer";
 import Main from "../../components/main/main";
 
 interface ClientIndexPageProps {
-  typePage?: string;
+  typePage: string;
 }
 
 export default class ClientIndexPage extends React.Component<ClientIndexPageProps> {
   render() {
-    const { typePage } = this.props;
+    const {typePage} = this.props;
 
     return (
       <div className="client-page">
-        <Header />
-        <Main page="clients-index" type={typePage} />
-        <Footer />
+        <Header/>
+        <Main page="index" type={typePage}/>
+        <Footer/>
       </div>
     );
   }

@@ -1,6 +1,7 @@
 import {Adresse} from "./Adresse";
 
 export class Societe {
+
     constructor(identifiant: number, raisonSociale: string, adresse: Adresse, telephone: string, mail: string, commentaires: string) {
         this._identifiant = identifiant;
         this._raisonSociale = raisonSociale;

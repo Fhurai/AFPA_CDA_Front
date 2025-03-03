@@ -11,7 +11,7 @@
   --gc-placeholder-brightness: 3;
 }
 body {
-  background-color: var(--gc-primary-color);
+  background-color: var(--gc-primary-color) !important;
   width: 100%;
   overflow-x: hidden;
   color: var(--gc-primary-contrast-color);
@@ -134,8 +134,33 @@ form .form-control {
 form .form-control:focus-visible {
   background-color: var(--gc-primary-color);
 }
+form .form-control:disabled {
+  background-color: var(--gc-primary-contrast-color) !important;
+  color: var(--gc-primary-color);
+  border: 1px solid var(--gc-primary-color);
+}
 form input[type='submit'] {
   float: right;
+}
+form .checkbox-custom input {
+  display: none;
+}
+form .checkbox-custom label {
+  background: var(--gc-false-color);
+  width: 10rem;
+  height: 2.4rem;
+  border-radius: var(--bs-border-radius);
+}
+form .checkbox-custom label:after {
+  content: "Non";
+  padding: 0.375rem 0.75rem;
+  vertical-align: -25%;
+}
+form .checkbox-custom input:checked + label {
+  background: var(--gc-true-color);
+}
+form .checkbox-custom input:checked + label:after {
+  content: "Oui";
 }
 div.hovertable {
   background-color: var(--gc-primary-contrast-color);
@@ -146,6 +171,7 @@ div.hovertable {
   text-align: center;
   border-radius: 0.5rem;
   overflow: auto;
+  margin-top: 5rem;
 }
 div.hovertable div.hovertable-head div.hovertable-row:first-child > .hovertable-cell {
   box-shadow: 2px 2px 2px grey;
@@ -191,14 +217,13 @@ div.hovertable div.hovertable-body div.hovertable-row div.hovertable-cell.boolea
 div.hovertable div.hovertable-body div.hovertable-row div.hovertable-cell.boolean.false {
   background-color: var(--gc-false-color);
 }
-div.hovertable div.hovertable-body div.hovertable-row div.hovertable-cell.boolean.false:after {
-  content: "Non";
-}
 div.hovertable div.hovertable-body div.hovertable-row div.hovertable-cell.boolean.true {
   background-color: var(--gc-true-color);
 }
-div.hovertable div.hovertable-body div.hovertable-row div.hovertable-cell.boolean.true:after {
-  content: "Oui";
+div.hovertable div.hovertable-body div.hovertable-row div.hovertable-cell:not(.small) {
+  overflow: clip;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 div.hovertable div.hovertable-body div.hovertable-row div.hovertable-cell a span.warning {
   color: var(--gc-warning-color);
@@ -249,9 +274,35 @@ div.hovertable div.hovertable-row div.hovertable-cell:first-child {
 div.hovertable div.hovertable-row div.hovertable-cell:last-child {
   border-radius: 0 0.5rem 0.5rem 0;
 }
+div.hovertable div.hovertable-row div.hovertable-cell.smaller {
+  width: 5rem;
+  max-width: 5%;
+}
+div.hovertable div.hovertable-row div.hovertable-cell.small {
+  width: 10rem;
+  max-width: 10%;
+}
+div.hovertable div.hovertable-row div.hovertable-cell.long {
+  width: 15rem;
+  max-width: 25%;
+}
+div.hovertable div.hovertable-row div.hovertable-cell.longer {
+  width: 25rem;
+  max-width: 30%;
+}
 main {
   min-height: 80vh;
   margin: 10vh 5vh;
+}
+@media (max-width: 767.98px) {
+  .handlewidth {
+    display: none!important;
+  }
+}
+@media (min-width: 767.98px) {
+  .handlewidth {
+    display: initial!important;
+  }
 }
 footer {
   background-color: var(--gc-secondary-color);

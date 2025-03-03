@@ -7,6 +7,7 @@ div.hovertable {
 	text-align: center;
 	border-radius: 0.5rem;
 	overflow: auto;
+    margin-top: 5rem;
 
 	div.hovertable-head {
 		div.hovertable-row:first-child {
@@ -65,19 +66,17 @@ div.hovertable {
 
                     &.false{
                         background-color: var(--gc-false-color);
-
-                        &:after{
-                            content: "Non";
-                        }
                     }
 
                     &.true{
                         background-color: var(--gc-true-color);
-
-                        &:after{
-                            content: "Oui";
-                        }
                     }
+                }
+
+                &:not(.small){
+                    overflow: clip;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
                 }
 
                 a{
@@ -136,6 +135,26 @@ div.hovertable {
 			&:last-child {
 				border-radius: 0 0.5rem 0.5rem 0;
 			}
+
+            &.smaller{
+                width: 5rem;
+                max-width: 5%;
+            }
+
+            &.small{
+                width: 10rem;
+                max-width: 10%;
+            }
+
+            &.long{
+                width: 15rem;
+                max-width: 25%;
+            }
+
+            &.longer{
+                width: 25rem;
+                max-width: 30%;
+            }
 		}
 	}
 }

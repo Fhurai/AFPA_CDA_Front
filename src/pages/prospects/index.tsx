@@ -4,18 +4,18 @@ import Footer from "../../components/footer/footer";
 import Main from "../../components/main/main";
 
 interface ProspectIndexPageProps {
-  typePage?: string;
+  typePage: string;
 }
 
 export default class ProspectIndexPage extends React.Component<ProspectIndexPageProps> {
   render() {
-    const { typePage } = this.props;
+    const {typePage} = this.props;
 
     return (
       <div className="prospect-page">
-        <Header />
-        <Main page="prospects-index" type={typePage} />
-        <Footer />
+        <Header/>
+        <Main page="index" type={typePage}/>
+        <Footer/>
       </div>
     );
   }

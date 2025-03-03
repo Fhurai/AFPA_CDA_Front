@@ -45,7 +45,7 @@ export default class Menu extends React.Component {
               Rechercher
             </button>
           </form>
-          <hr />
+          <hr/>
           <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
             <li className="nav-item" aria-label="Page de connexion">
               <a href="." className="nav-link active">

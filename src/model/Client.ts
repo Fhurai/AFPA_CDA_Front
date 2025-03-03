@@ -2,6 +2,7 @@ import {Societe} from "./Societe";
 import {Adresse} from "./Adresse";
 
 export class Client extends Societe {
+
     constructor(identifiant: number, raisonSociale: string, adresse: Adresse, telephone: string, mail: string, commentaires: string, chiffreAffaires: number, nbEmployes: number) {
         super(identifiant, raisonSociale, adresse, telephone, mail, commentaires);
         this._chiffreAffaires = chiffreAffaires;
