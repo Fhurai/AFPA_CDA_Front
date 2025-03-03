@@ -8,7 +8,7 @@ import ClientsIndex from "./pages/clients";
 import ProspectIndex from "./pages/prospects";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
-import Consult from "./pages/clients/consult";
+import Consult from "./pages/consult";
 
 function App() {
   return (

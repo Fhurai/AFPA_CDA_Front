@@ -15,7 +15,7 @@ export default class Footer extends React.Component {
               </a>
             </div>
             <div className="col-4">
-              <a href="./sitemap.xml">Plan du site</a>
+              <a href="/sitemap.xml">Plan du site</a>
             </div>
             <div className="col-4">
               CGU

@@ -3,7 +3,17 @@ import Header from "../components/header/header";
 import Main from "../components/main/main";
 import Footer from "../components/footer/footer";
 
-export default class Contact extends React.Component {
+interface ContactProps{
+
+}
+
+export default class Contact extends React.Component<ContactProps> {
+
+  constructor(props: ContactProps) {
+    document.title = "Contact | Reverso";
+    super(props);
+  }
+
   render() {
     return (
       <div className="contact-page">

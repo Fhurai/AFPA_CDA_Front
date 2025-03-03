@@ -3,7 +3,17 @@ import Header from "../components/header/header";
 import Main from "../components/main/main";
 import Footer from "../components/footer/footer";
 
-export default class Error extends React.Component {
+interface ErrorProps {
+
+}
+
+export default class Error extends React.Component<ErrorProps> {
+
+  constructor(props: ErrorProps) {
+    document.title = "Erreur | Reverso";
+    super(props);
+  }
+
   render() {
     return (
       <div className={"error-page"}>

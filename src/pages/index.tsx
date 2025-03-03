@@ -8,6 +8,12 @@ interface IndexPageProps {
 }
 
 export default class IndexPage extends React.Component<IndexPageProps> {
+
+  constructor(props: IndexPageProps) {
+    document.title = "Accueil | Reverso";
+    super(props);
+  }
+
   render() {
     const {typePage} = this.props;
 

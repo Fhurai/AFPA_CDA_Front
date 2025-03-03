@@ -1,25 +1,53 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset>
 
 	<!-- Accueil -->
 	<url>
-		<loc>http://localhost:63342/Front/index.html</loc>
+		<loc>/</loc>
 		<lastmod>2025-02-25</lastmod>
 		<changefreq>never</changefreq>
 		<priority>1.0</priority>
 	</url>
-
-	<!-- Clients -->
-
-	<!-- Prospects -->
-
 	<!-- Contact -->
 	<url>
-		<loc>http://localhost:63342/Front/contact.html</loc>
+		<loc>/contact</loc>
 		<lastmod>2025-02-25</lastmod>
 		<changefreq>never</changefreq>
 		<priority>0.7</priority>
 	</url>
+    <!-- Clients -->
+    <url>
+        <loc>http://localhost:63342/Front/contact.html</loc>
+        <lastmod>2025-02-25</lastmod>
+        <changefreq>never</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>http://localhost:63342/Front/contact.html</loc>
+        <lastmod>2025-02-25</lastmod>
+        <changefreq>never</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>http://localhost:63342/Front/contact.html</loc>
+        <lastmod>2025-02-25</lastmod>
+        <changefreq>never</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>http://localhost:63342/Front/contact.html</loc>
+        <lastmod>2025-02-25</lastmod>
+        <changefreq>never</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>http://localhost:63342/Front/contact.html</loc>
+        <lastmod>2025-02-25</lastmod>
+        <changefreq>never</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Prospects -->
+
 
 </urlset>

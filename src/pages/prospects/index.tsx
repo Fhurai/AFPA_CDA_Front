@@ -8,6 +8,12 @@ interface ProspectIndexPageProps {
 }
 
 export default class ProspectIndexPage extends React.Component<ProspectIndexPageProps> {
+
+  constructor(props: ProspectIndexPageProps) {
+    document.title = "Prospects | Reverso";
+    super(props);
+  }
+
   render() {
     const {typePage} = this.props;
 
