@@ -53,7 +53,7 @@ export default class Input extends React.Component<InputProps> {
                  <input type={"checkbox"}
                         className={"form-control"}
                         id={`${name}Input`}
-                             disabled={disabled}/>
+                             disabled={disabled} defaultChecked={value === "Oui"}/>
                  <label htmlFor={`${name}Input`}></label>
         </div>);
         break;

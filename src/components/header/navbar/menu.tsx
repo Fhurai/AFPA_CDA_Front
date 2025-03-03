@@ -34,17 +34,6 @@ export default class Menu extends React.Component {
               </a>
             </li>
           </ul>
-          <form className="d-flex mt-3" role="search">
-            <input
-              aria-label="Search"
-              className="form-control me-2"
-              type="search"
-              placeholder="Rechercher..."
-            />
-            <button type="submit" className="btn btn-primary">
-              Rechercher
-            </button>
-          </form>
           <hr/>
           <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
             <li className="nav-item" aria-label="Page de connexion">
