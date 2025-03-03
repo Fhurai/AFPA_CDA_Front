@@ -7,6 +7,7 @@ div.hovertable {
 	text-align: center;
 	border-radius: 0.5rem;
 	overflow: auto;
+    margin-top: 5rem;
 
 	div.hovertable-head {
 		div.hovertable-row:first-child {
@@ -24,10 +25,13 @@ div.hovertable {
 
 			div.hovertable-cell {
 
-				> input {
+				> input, select {
 					background-color: transparent;
 					color: var(--gc-primary-color);
 					border: transparent;
+                    width: 100%;
+                    text-align: center;
+                    color-scheme: dark;
 
 					&:placeholder-shown {
 						color: var(--gc-primary-color);
@@ -38,6 +42,11 @@ div.hovertable {
 						outline: none;
 						border-bottom: 1px solid var(--gc-primary-color);
 					}
+
+                    option{
+                        background-color: var(--gc-primary-contrast-color);
+                        color: var(--gc-primary-color);
+                    }
 				}
 			}
 		}
@@ -51,7 +60,41 @@ div.hovertable {
 				background-color: var(--gc-primary-color);
 				color: var(--gc-primary-contrast-color);
 				box-shadow: 2px 2px 2px grey;
+
+                &.boolean{
+                    color: var(--gc-white);
+
+                    &.false{
+                        background-color: var(--gc-false-color);
+                    }
+
+                    &.true{
+                        background-color: var(--gc-true-color);
+                    }
+                }
+
+                &:not(.small){
+                    overflow: clip;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                }
+
+                a{
+                    span{
+                        &.warning{
+                            color: var(--gc-warning-color);
+                        }
+
+                        &.danger{
+                            color: var(--gc-danger-color);
+                        }
+                    }
+                }
 			}
+
+            &[hidden]{
+                display: none;
+            }
 		}
 	}
 
@@ -92,6 +135,26 @@ div.hovertable {
 			&:last-child {
 				border-radius: 0 0.5rem 0.5rem 0;
 			}
+
+            &.smaller{
+                width: 5rem;
+                max-width: 5%;
+            }
+
+            &.small{
+                width: 10rem;
+                max-width: 10%;
+            }
+
+            &.long{
+                width: 15rem;
+                max-width: 25%;
+            }
+
+            &.longer{
+                width: 25rem;
+                max-width: 30%;
+            }
 		}
 	}
 }

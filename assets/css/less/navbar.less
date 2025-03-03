@@ -7,54 +7,60 @@ nav {
 		a {
 			color: var(--gc-secondary-contrast-color);
 		}
-
-		div.offcanvas {
-			background-color: var(--gc-secondary-color);
-			color: var(--gc-secondary-contrast-color);
-
-			div.offcanvas-body {
-
-				> ul.navbar-nav {
-					margin-top: 1rem;
-
-					.nav-link {
-						color: var(--gc-secondary-contrast-color);
-						padding: 0 1rem;
-						display: inline-flex;
-					}
-
-					.nav-item {
-						align-content: space-evenly;
-
-						ul.dropdown-menu {
-							background-color: var(--gc-primary-color);
-							border-color: var(--gc-primary-contrast-color);
-
-							li {
-								&:hover {
-									background-color: var(--gc-primary-contrast-color);
-
-									> a {
-										color: var(--gc-primary-color);
-									}
-								}
-
-								a {
-									color: var(--gc-primary-contrast-color);
-
-									&:hover {
-										background-color: transparent;
-									}
-								}
-							}
-
-							hr {
-								border-color: var(--gc-primary-contrast-color);
-							}
-						}
-					}
-				}
-			}
-		}
 	}
+
+    div.offcanvas {
+        background-color: var(--gc-secondary-color);
+        color: var(--gc-secondary-contrast-color);
+
+        div.offcanvas-body {
+
+            > ul.navbar-nav {
+                margin-top: 1rem;
+
+                .nav-link {
+                    color: var(--gc-secondary-contrast-color);
+                    padding: 0 1rem;
+                    display: inline-flex;
+                }
+
+                .nav-item {
+                    align-content: space-evenly;
+
+                    ul.dropdown-menu {
+                        background-color: var(--gc-primary-color);
+                        border-color: var(--gc-primary-contrast-color);
+
+                        li {
+                            &:hover {
+                                background-color: var(--gc-primary-contrast-color);
+
+                                > a {
+                                    color: var(--gc-primary-color);
+                                }
+                            }
+
+                            a {
+                                color: var(--gc-primary-contrast-color);
+
+                                &:hover {
+                                    background-color: transparent;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            hr {
+                border-color: var(--gc-primary-contrast-color);
+            }
+
+            form{
+                input{
+                    width: 15rem;
+                }
+            }
+        }
+    }
 }
