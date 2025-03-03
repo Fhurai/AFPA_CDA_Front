@@ -1,0 +1,340 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link href="/favicon.ico" rel="icon">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+          rel="stylesheet">
+  <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" rel="stylesheet">
+    <link href="../assets/css/app.min.css" rel="stylesheet">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta content="#000000" name="theme-color">
+    <meta content="Web site created using create-react-app" name="description">
+    <link href="/manifest.json" rel="manifest">
+    <title>React App</title>
+</head>
+<body>
+<noscript>You need to enable JavaScript to run this app.</noscript>
+<div id="root">
+    <div id="application">
+        <div class="prospect-page">
+            <header aria-label="Header" class="header">
+                <nav aria-controls="navbar"
+                     aria-label="navbar" class="navbar navbar-expand-lg fixed-top">
+                    <div class="container-fluid"><a class="navbar-brand"
+                                                    href="/">Reverso</a>
+                        <button class="navbar-toggler"
+                                data-bs-target="#offcanvasNavbar"
+                                data-bs-toggle="offcanvas" type="button"><span
+                                class="navbar-toggler-icon"></span></button>
+                    </div>
+                    <div class="offcanvas offcanvas-end" id="offcanvasNavbar"
+                         tabindex="-1">
+                        <div class="offcanvas-header"><h5
+                                class="offcanvas-title"
+                                id="offcanvasNavbarLabel">Reverso</h5>
+                            <button aria-label="Close" class="btn-close"
+                                    data-bs-dismiss="offcanvas"
+                                    type="button"></button>
+                        </div>
+                        <div class="offcanvas-body">
+                          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                            <li aria-label="Page d'accueil"
+                                class="nav-item"><a class="nav-link active"
+                                                    href="../index.html">
+                              <div class="material-symbols-outlined">
+                                home
+                              </div>
+                              <div>Accueil</div>
+                            </a></li>
+                            <li aria-label="Partie clients"
+                                class="nav-item"><a
+                                    class="nav-link active"
+                                    href="../clients/index.html">
+                              <div class="material-symbols-outlined">
+                                contact_page
+                              </div>
+                              <div>Clients</div>
+                            </a></li>
+                            <li aria-label="Partie prospects"
+                                class="nav-item"><a
+                                    class="nav-link active"
+                                    href="../prospects/index.html">
+                              <div class="material-symbols-outlined">
+                                perm_contact_calendar
+                              </div>
+                              <div>Prospects</div>
+                            </a></li>
+                          </ul>
+                            <hr>
+                            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                                <li aria-label="Page de connexion"
+                                    class="nav-item"><a class="nav-link active"
+                                                                      href=".">
+                                    <div class="material-symbols-outlined">
+                                        login
+                                    </div>
+                                    <div>Connexion</div>
+                                </a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </header>
+            <main>
+                <article>
+                    <header><h1>Bienvenue</h1></header>
+                    <section class="container" id="content"><span
+                            class="handlewidth"> sur la partie prospects</span><a
+                            class="btn btn-primary float-end d-flex"
+                            href="../prospects/form.html">
+                        <div class="material-symbols-outlined danger">Add</div>
+                        <div class="handlewidth">Ajout d'un prospect</div>
+                    </a></section>
+                    <div class="hovertable">
+                        <div class="hovertable-head">
+                            <div class="hovertable-row">
+                                <div class="hovertable-cell smaller ">#</div>
+                                <div class="hovertable-cell ">Raison sociale
+                                </div>
+                                <div class="hovertable-cell longer">Adresse
+                                    postale
+                                </div>
+                                <div class="hovertable-cell ">Téléphone</div>
+                                <div class="hovertable-cell long">Adresse
+                                    email
+                                </div>
+                                <div class="hovertable-cell handlewidth">Date
+                                    prospection
+                                </div>
+                                <div class="hovertable-cell handlewidth">
+                                    Prospect intéressé
+                                </div>
+                                <div class="hovertable-cell small">Actions</div>
+                            </div>
+                            <div class="hovertable-row">
+                                <div class="hovertable-cell smaller "><input
+                                        min="1" name="search#" placeholder="..."
+                                        step="1" type="number"></div>
+                                <div class="hovertable-cell "><input min="0"
+                                                                     name="searchRaison sociale"
+                                                                     placeholder="..."
+                                                                     type="text">
+                                </div>
+                                <div class="hovertable-cell longer"><input
+                                        min="0" name="searchAdresse postale" placeholder="..."
+                                        type="text"></div>
+                                <div class="hovertable-cell "><input min="0"
+                                                                     name="searchTéléphone"
+                                                                     placeholder="..."
+                                                                     type="text">
+                                </div>
+                                <div class="hovertable-cell long"><input min="0"
+                                                                         name="searchAdresse email"
+                                                                         placeholder="..."
+                                                                         type="text">
+                                </div>
+                                <div class="hovertable-cell handlewidth"><input
+                                        maxlength="10" minlength="10"
+                                        name="searchDate prospection"
+                                        pattern="\d{1,2}/\d{1,2}/\d{4}"
+                                        placeholder="dd/mm/yyyy"
+                                        type="text"></div>
+                                <div class="hovertable-cell handlewidth"><select
+                                        name="searchProspect intéressé">
+                                    <option selected="" value=""></option>
+                                    <option value="true">Oui</option>
+                                    <option value="false">Non</option>
+                                </select></div>
+                                <div class="hovertable-cell small"></div>
+                            </div>
+                        </div>
+                        <div class="hovertable-body">
+                            <div class="hovertable-row">
+                                <div class="hovertable-cell integer smaller ">
+                                    1
+                                </div>
+                                <div class="hovertable-cell string ">Skeb</div>
+                                <div class="hovertable-cell string longer">28
+                                    Boulevard Albert 1er 54000 Nancy
+                                </div>
+                                <div class="hovertable-cell string ">
+                                    0388553370
+                                </div>
+                                <div class="hovertable-cell string long">
+                                    contact@skeb.com
+                                </div>
+                                <div class="hovertable-cell date handlewidth">
+                                    09/10/2025
+                                </div>
+                                <div class="hovertable-cell boolean false handlewidth">
+                                    Non
+                                </div>
+                                <div class="hovertable-cell small"><a
+                                        href="/prospects/1/view"
+                                        title="Consulter"><span
+                                        class="material-symbols-outlined">visibility</span></a><a
+                                        href="/prospects/1/update"
+                                        title="Mettre à jour"><span
+                                        class="material-symbols-outlined warning">edit</span></a><a
+                                        href="/prospects/1/delete"
+                                        title="Supprimer"><span
+                                        class="material-symbols-outlined danger">delete</span></a>
+                                </div>
+                            </div>
+                            <div class="hovertable-row">
+                                <div class="hovertable-cell integer smaller ">
+                                    2
+                                </div>
+                                <div class="hovertable-cell string ">Vgen</div>
+                                <div class="hovertable-cell string longer">80
+                                    ter Quai Voltaire 95870 Bezons
+                                </div>
+                                <div class="hovertable-cell string ">
+                                    0173260000
+                                </div>
+                                <div class="hovertable-cell string long">
+                                    contact@vgen.com
+                                </div>
+                                <div class="hovertable-cell date handlewidth">
+                                    28/05/2024
+                                </div>
+                                <div class="hovertable-cell boolean false handlewidth">
+                                    Non
+                                </div>
+                                <div class="hovertable-cell small"><a
+                                        href="/prospects/2/view"
+                                        title="Consulter"><span
+                                        class="material-symbols-outlined">visibility</span></a><a
+                                        href="/prospects/2/update"
+                                        title="Mettre à jour"><span
+                                        class="material-symbols-outlined warning">edit</span></a><a
+                                        href="/prospects/2/delete"
+                                        title="Supprimer"><span
+                                        class="material-symbols-outlined danger">delete</span></a>
+                                </div>
+                            </div>
+                            <div class="hovertable-row">
+                                <div class="hovertable-cell integer smaller ">
+                                    3
+                                </div>
+                                <div class="hovertable-cell string ">Gank</div>
+                                <div class="hovertable-cell string longer">276b
+                                    Avenue du président Wilson 93210 St-Denis
+                                </div>
+                                <div class="hovertable-cell string ">
+                                    0387172390
+                                </div>
+                                <div class="hovertable-cell string long">
+                                    contact@gank.com
+                                </div>
+                                <div class="hovertable-cell date handlewidth">
+                                    10/10/2024
+                                </div>
+                                <div class="hovertable-cell boolean true handlewidth">
+                                    Oui
+                                </div>
+                                <div class="hovertable-cell small"><a
+                                        href="../prospects/form.html"
+                                        title="Consulter"><span
+                                        class="material-symbols-outlined">visibility</span></a><a
+                                        href="../prospects/form.html"
+                                        title="Mettre à jour"><span
+                                        class="material-symbols-outlined warning">edit</span></a><a
+                                        href="../prospects/form.html"
+                                        title="Supprimer"><span
+                                        class="material-symbols-outlined danger">delete</span></a>
+                                </div>
+                            </div>
+                            <div class="hovertable-row">
+                                <div class="hovertable-cell integer smaller ">
+                                    4
+                                </div>
+                                <div class="hovertable-cell string ">
+                                    Artistsnclients
+                                </div>
+                                <div class="hovertable-cell string longer">25
+                                    Rue Serpenoise 57000 Metz
+                                </div>
+                                <div class="hovertable-cell string ">
+                                    0354626299
+                                </div>
+                                <div class="hovertable-cell string long">
+                                    contact@artistsnclients.com
+                                </div>
+                                <div class="hovertable-cell date handlewidth">
+                                    15/10/2023
+                                </div>
+                                <div class="hovertable-cell boolean true handlewidth">
+                                    Oui
+                                </div>
+                                <div class="hovertable-cell small"><a
+                                        href="../prospects/form.html"
+                                        title="Consulter"><span
+                                        class="material-symbols-outlined">visibility</span></a><a
+                                        href="../prospects/form.html"
+                                        title="Mettre à jour"><span
+                                        class="material-symbols-outlined warning">edit</span></a><a
+                                        href="../prospects/form.html"
+                                        title="Supprimer"><span
+                                        class="material-symbols-outlined danger">delete</span></a>
+                                </div>
+                            </div>
+                            <div class="hovertable-row">
+                                <div class="hovertable-cell integer smaller ">
+                                    5
+                                </div>
+                                <div class="hovertable-cell string ">Discord
+                                </div>
+                                <div class="hovertable-cell string longer">46
+                                    Rue des Rats 54000 Nancy
+                                </div>
+                                <div class="hovertable-cell string ">
+                                    0394135679
+                                </div>
+                                <div class="hovertable-cell string long">
+                                    contact@discord.gg
+                                </div>
+                                <div class="hovertable-cell date handlewidth">
+                                    12/10/2024
+                                </div>
+                                <div class="hovertable-cell boolean false handlewidth">
+                                    Non
+                                </div>
+                                <div class="hovertable-cell small"><a
+                                        href="../prospects/form.html"
+                                        title="Consulter"><span
+                                        class="material-symbols-outlined">visibility</span></a><a
+                                        href="../prospects/form.html"
+                                        title="Mettre à jour"><span
+                                        class="material-symbols-outlined warning">edit</span></a><a
+                                        href="../prospects/form.html"
+                                        title="Supprimer"><span
+                                        class="material-symbols-outlined danger">delete</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </main>
+          <footer aria-label="Footer" class="footer">
+            <div class="container-fluid">
+              <div class="row" role="contentinfo">
+                <div class="col-4">Done with <a
+                        href="https://getbootstrap.com/">Bootstrap</a>
+                </div>
+                <div class="col-4"><a href="../contact.html">Nous
+                  contacter</a>
+                </div>
+                <div class="col-4"><a href="../sitemap.xml">Plan du
+                  site</a></div>
+                <div class="col-4">CGU</div>
+              </div>
+            </div>
+          </footer>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
