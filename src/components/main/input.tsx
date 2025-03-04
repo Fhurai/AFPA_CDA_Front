@@ -9,11 +9,13 @@ interface InputProps {
   disabled?: boolean,
   step?: number,
   value?: any
+  required?: boolean
+  pattern?: string
 }
 
 export default class Input extends React.Component<InputProps> {
   render() {
-    const {type, name, className, sizeInput, disabled, step, value} = this.props;
+    const {type, name, className, sizeInput, disabled, step, value, required, pattern} = this.props;
     const betterLabel: string = Strings.nameToLabel(name);
     let input: React.JSX.Element;
 
@@ -25,7 +27,9 @@ export default class Input extends React.Component<InputProps> {
                         placeholder={betterLabel}
                         size={sizeInput}
                         disabled={disabled}
-                        defaultValue={value}/>);
+                        defaultValue={value}
+                        required={required}
+                        pattern={pattern}/>);
         break;
       }
       case "number":{
@@ -35,7 +39,8 @@ export default class Input extends React.Component<InputProps> {
                         placeholder={betterLabel}
                         disabled={disabled}
                         step={step}
-                        defaultValue={value} />);
+                        defaultValue={value}
+                        required={required} />);
         break;
       }
       case "date":{
@@ -45,7 +50,8 @@ export default class Input extends React.Component<InputProps> {
                         size={10}
                         placeholder={betterLabel}
                         disabled={disabled}
-                        defaultValue={value?.split("T")[0]}/>);
+                        defaultValue={value?.split("T")[0]}
+                        required={required}/>);
         break;
       }
       case "checkbox":{
@@ -53,9 +59,20 @@ export default class Input extends React.Component<InputProps> {
                  <input type={"checkbox"}
                         className={"form-control"}
                         id={`${name}Input`}
-                             disabled={disabled} defaultChecked={value === "Oui"}/>
+                        disabled={disabled}
+                        defaultChecked={value === "Oui"}/>
                  <label htmlFor={`${name}Input`}></label>
         </div>);
+        break;
+      }
+      case "password":{
+        input = (<input type={"password"}
+                        className={"form-control"}
+                        id={`${name}Input`}
+                        size={sizeInput}
+                        placeholder={betterLabel}
+                        disabled={disabled}
+                        defaultValue={value}/>);
         break;
       }
       default: {

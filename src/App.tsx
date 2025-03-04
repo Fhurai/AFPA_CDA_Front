@@ -7,8 +7,9 @@ import Error from "./pages/error";
 import ClientsIndex from "./pages/clients";
 import ProspectIndex from "./pages/prospects";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min';
 import Consult from "./pages/consult";
+import Connexion from "./pages/connexion";
+import Deconnexion from "./pages/deconnexion";
 
 function App() {
   return (
@@ -17,6 +18,8 @@ function App() {
         <Routes>
           <Route index path={"/"} element={<IndexPage typePage={""}/>}/>
           <Route path={"/contact"} element={<Contact/>}/>
+          <Route path={"/connexion"} element={<Connexion />} />
+          <Route path={"/deconnexion"} element={<Deconnexion />} />
           <Route path={"/clients"}>
             <Route path={"/clients/"} element={<ClientsIndex typePage={"clients"}/>}/>
             <Route path={"/clients/:id/view"} element={<Consult consulttype={'view'} datatype={'client'}/>}/>

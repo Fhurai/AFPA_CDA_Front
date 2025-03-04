@@ -1,5 +1,6 @@
 import {Societe} from "./Societe";
 import {Adresse} from "./Adresse";
+import {Contrat} from "./Contrat";
 
 export class Client extends Societe {
 
@@ -7,6 +8,7 @@ export class Client extends Societe {
         super(identifiant, raisonSociale, adresse, telephone, mail, commentaires);
         this._chiffreAffaires = chiffreAffaires;
         this._nbEmployes = nbEmployes;
+        this._contrats = [];
     }
 
     private _chiffreAffaires: number;
@@ -27,5 +29,19 @@ export class Client extends Societe {
 
     set nbEmployes(value: number) {
         this._nbEmployes = value;
+    }
+
+    private _contrats: Contrat[];
+
+    get contrats(): Contrat[] {
+        return this._contrats;
+    }
+
+    set contrats(value: Contrat[]) {
+        this._contrats = value;
+    }
+
+    public addContrat(contrat: Contrat){
+        this._contrats.push(contrat);
     }
 }

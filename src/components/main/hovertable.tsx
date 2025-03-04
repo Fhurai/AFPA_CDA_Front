@@ -178,13 +178,6 @@ export default class Hovertable extends React.Component<HovertableProps> {
             <a title="Consulter" href={`/${datatype + "s"}/${line[0].value}/view`}>
               <span className="material-symbols-outlined">visibility</span>
             </a>
-            {
-              datatype === "client" &&
-              <a title="Voir les contrats" href={`/${datatype + "s"}/${line[0].value}/contrats`}
-                 className={"handlewidth"}>
-                <span className="material-symbols-outlined">picture_as_pdf</span>
-              </a>
-            }
             <a title="Mettre à jour" href={`/${datatype + "s"}/${line[0].value}/update`}>
               <span className="material-symbols-outlined warning">edit</span>
             </a>

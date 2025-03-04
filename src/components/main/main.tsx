@@ -5,6 +5,7 @@ import {useParams} from 'react-router-dom';
 import {Client} from "../../model/Client";
 import {Adresse} from "../../model/Adresse";
 import {Prospect} from "../../model/Prospect";
+import {Contrat} from "../../model/Contrat";
 
 // Create a HOC to pass params to class component
 const withParams = (Component: any) => {
@@ -31,6 +32,10 @@ class Main extends React.Component<MainProps> {
       new Client(2, "Capcom", new Adresse(2, "25", "rue de la Taye", "57130", "Jussy"), "0387758575", "contact@capcom.com", "Réel âge d'or ?", 4813.00, 6),
       new Client(3, "Monolith Software", new Adresse(3, "3", "rue des Michottes", "54000", "Nancy"), "0383375640", "contact@monolith-soft.com", "Xenoblade", 50000, 1),
     ];
+
+    data[0].addContrat(new Contrat(1, "Contrat G+", 1500.0, 1));
+    data[0].addContrat(new Contrat(2, "Contrat iGoogle", 4500.0, 1));
+    data[2].addContrat(new Contrat(3, "Contrat Metaverse", 2000000.0, 3));
 
     search = data.at(id - 1) as Client;
 
@@ -83,11 +88,13 @@ class Main extends React.Component<MainProps> {
             {"name": "Chiffre d'affaires", "type": "double", "edit": false, "className": "handlewidth"},
             {"name": "Nb employés", "type": "integer", "edit": false, "className": "handlewidth"}
           ];
+
           hovertableData = [
             [{"value": 1}, {"value": "Falcom"}, {"value": "2 bis rue Ardant du Picq 57004 Metz"}, {"value": "0387543400"}, {"value": "contact@falcom.com"}, {"value": 999999.99}, {"value": 80}],
             [{"value": 2}, {"value": "Capcom"}, {"value": "25 rue de la Taye 57130 Jussy"}, {"value": "0387758575"}, {"value": "contact@capcom.com"}, {"value": 4813.00}, {"value": 6}],
             [{"value": 3}, {"value": "Monolith Software"}, {"value": "3 rue des Michottes 54000 Nancy"}, {"value": "0383375640"}, {"value": "contact@monolith-soft.com"}, {"value": 50000.00}, {"value": 1}],
           ];
+          console.log(hovertableData);
         } else if (type === "prospects") {
           hovertableColumns = [
             {"name": "#", "type": "integer", "edit": false},
@@ -112,6 +119,16 @@ class Main extends React.Component<MainProps> {
       case "contact": {
         title = "Contact";
         summary = "Vous souhaitez nous contacter pour un besoin bien précis ? Veuillez utiliser le formulaire suivant.";
+        break;
+      }
+      case "connexion":{
+        title = "Connexion";
+        summary = "Page de connexion sur Reverso.";
+        break;
+      }
+      case "deconnexion":{
+        title = "Deconnexion";
+        summary = "Souhaitez-vous vous déconnecter de l'application ?";
         break;
       }
       case "view": {
@@ -156,6 +173,8 @@ class Main extends React.Component<MainProps> {
               </a>}
           </section>
           {page === "contact" && <Form typePage={page}/>}
+          {page === "connexion" && <Form typePage={page} />}
+          {page === "deconnexion" && <Form typePage={page} />}
           {page === "index" && type !== "" &&
             <Hovertable
               tablecolumns={hovertableColumns}

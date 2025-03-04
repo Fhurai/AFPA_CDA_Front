@@ -37,9 +37,15 @@ export default class Menu extends React.Component {
           <hr/>
           <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
             <li className="nav-item" aria-label="Page de connexion">
-              <a href="." className="nav-link active">
+              <a href="/connexion" className="nav-link active">
                 <div className="material-symbols-outlined">login</div>
                 <div>Connexion</div>
+              </a>
+            </li>
+            <li className="nav-item" aria-label="Page de connexion">
+              <a href="/deconnexion" className="nav-link active">
+                <div className="material-symbols-outlined">logout</div>
+                <div>Deconnexion</div>
               </a>
             </li>
           </ul>

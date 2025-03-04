@@ -56,4 +56,8 @@ export class Adresse {
     set ville(value: string) {
         this._ville = value;
     }
+
+    toString(): string{
+        return this._numeroRue + " " + this._nomRue + " " + this._codePostal + " " + this._ville;
+    }
 }

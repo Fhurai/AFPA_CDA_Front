@@ -7,12 +7,13 @@ interface TextareaProps {
   placeholder: string,
   sizeRows: number,
   disabled?: boolean,
-  value?: string
+  value?: string,
+  required?: boolean
 }
 
 export default class Textarea extends React.Component<TextareaProps> {
   render() {
-    const {name, className, placeholder, sizeRows, disabled, value} = this.props;
+    const {name, className, placeholder, sizeRows, disabled, value, required} = this.props;
     const betterLabel: string = Strings.nameToLabel(name);
     return (<div className={"form-group " + className}>
       <label htmlFor={`${name}Textarea`}>{betterLabel}</label>
@@ -22,6 +23,7 @@ export default class Textarea extends React.Component<TextareaProps> {
                 rows={sizeRows}
                 disabled={disabled}
                 defaultValue={value}
+                required={required}
       />
     </div>);
   }
