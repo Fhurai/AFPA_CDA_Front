@@ -40,7 +40,9 @@ export default class Input extends React.Component<InputProps> {
                         disabled={disabled}
                         step={step}
                         defaultValue={value}
-                        required={required} />);
+                        required={required}
+                        min={name === "chiffreAffaires" ? 250 : (name === "nbEmployes" ? 1 : 0)}
+        />);
         break;
       }
       case "date":{
