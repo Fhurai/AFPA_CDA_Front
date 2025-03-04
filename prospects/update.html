@@ -1,14 +1,15 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <link href="/favicon.ico" rel="icon">
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/css/fonts.css" rel="stylesheet">
-    <link href="assets/css/app.min.css" rel="stylesheet">
+    <link href="../assets/favicon.ico" rel="icon">
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/css/fonts.css" rel="stylesheet">
+    <link href="../assets/css/app.min.css" rel="stylesheet">
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <meta content="#000000" name="theme-color">
     <meta content="Site de gestion de clients" name="description">
-    <title>Contact | Reverso</title>
+    <link href="/manifest.json" rel="manifest">
+    <title>Update Prospect | Reverso</title>
     <script defer="" src="/static/js/bundle.js"></script>
     <style>.App {
         text-align: center;
@@ -13309,12 +13310,12 @@
 <noscript>You need to enable JavaScript to run this app.</noscript>
 <div id="root">
     <div id="application">
-        <div class="contact-page">
+        <div class="client-page">
             <header aria-label="Header" class="header">
                 <nav aria-label="navbar"
                      class="navbar navbar-expand-lg fixed-top">
                     <div class="container-fluid"><a class="navbar-brand"
-                                                    href="./index.html">Reverso
+                                                    href="../index.html">Reverso
                     </a>
                         <button aria-label="navbar-toggler"
                                 class="navbar-toggler"
@@ -13335,7 +13336,7 @@
                             <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                                 <li aria-label="Page d'accueil"
                                     class="nav-item"><a class="nav-link active"
-                                                        href="./index.html">
+                                                        href="../index.html">
                                     <div class="material-symbols-outlined">
                                         home
                                     </div>
@@ -13344,7 +13345,7 @@
                                 <li aria-label="Partie clients"
                                     class="nav-item"><a
                                         class="nav-link active"
-                                        href="./clients/index.html">
+                                        href="../clients/index.html">
                                     <div class="material-symbols-outlined">
                                         contact_page
                                     </div>
@@ -13353,7 +13354,7 @@
                                 <li aria-label="Partie prospects"
                                     class="nav-item"><a
                                         class="nav-link active"
-                                        href="./prospects/index.html">
+                                        href="../prospects/index.html">
                                     <div class="material-symbols-outlined">
                                         perm_contact_calendar
                                     </div>
@@ -13365,16 +13366,16 @@
                                 <li aria-label="Page de connexion"
                                     class="nav-item"><a
                                         class="nav-link active"
-                                        href="./connexion.html">
+                                        href="../connexion.html">
                                     <div class="material-symbols-outlined">
                                         login
                                     </div>
                                     <div>Connexion</div>
                                 </a></li>
-                                <li aria-label="Page de déconnexion"
+                                <li aria-label="Page de connexion"
                                     class="nav-item"><a
                                         class="nav-link active"
-                                        href="./deconnexion.html">
+                                        href="../deconnexion.html">
                                     <div class="material-symbols-outlined">
                                         logout
                                     </div>
@@ -13387,24 +13388,30 @@
             </header>
             <main>
                 <article>
-                    <header><h1>Contact</h1></header>
+                    <header><h1>Prospect n° 2</h1></header>
                     <section class="container" id="content"><span
-                            class="handlewidth">Vous souhaitez nous contacter pour un besoin bien précis ? Veuillez utiliser le formulaire suivant.</span>
+                            class="handlewidth">Vous modifiez les données du prospect.</span>
                     </section>
                     <form action="#" method="post">
                         <fieldset class="row modal-dialog-centered">
+                            <legend class="border-bottom mb-4">Partie société
+                            </legend>
                             <div class="form-group col-md-6"><label
-                                    for="prenomInput">Prenom</label><input
-                                    class="form-control" id="prenomInput"
-                                    pattern="^[A-Za-zÀ-ÿ' \-]+$" placeholder="Prenom" required=""
-                                    size="30" type="text">
+                                    for="raisonSocialeInput">Raison
+                                Sociale</label><input class="form-control"
+                                                      id="raisonSocialeInput"
+                                                      pattern="^[A-Za-zÀ-ÿ' \-]+$"
+                                                      placeholder="Raison Sociale" required=""
+                                                      size="30"
+                                                      type="text" value="Vgen">
                             </div>
                             <div class="form-group col-md-6"><label
-                                    for="nomInput">Nom</label><input
-                                    class="form-control" id="nomInput"
-                                    pattern="^[A-Za-zÀ-ÿ' \-]+$" placeholder="Nom" required=""
-                                    size="30" type="text">
-                            </div>
+                                    for="telephoneInput">Telephone</label><input
+                                    class="form-control" id="telephoneInput"
+                                    pattern="^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.\-]*\d{2}){4}" placeholder="Telephone"
+                                    required=""
+                                    size="12"
+                                    type="text" value="0173260000"></div>
                             <div class="form-group col-md-6"><label
                                     for="adresseMailInput">Adresse
                                 Mail</label><input class="form-control"
@@ -13412,16 +13419,75 @@
                                                    pattern="^[A-Za-z0-9._%+\-]+@[A-Za-z0-9]+.[A-Za-z0-9.\-]{2,}"
                                                    placeholder="Adresse Mail" required=""
                                                    size="30"
-                                                   type="text"></div>
+                                                   type="text"
+                                                   value="contact@artistsnclients.com">
+                            </div>
                             <div class="form-group col-md-12"><label
-                                    for="messageTextarea">Message</label><textarea
-                                    class="form-control" id="messageTextarea"
-                                    placeholder="Le contenu de votre message"
-                                    required="" rows="10"></textarea></div>
+                                    for="commentairesTextarea">Commentaires</label><textarea
+                                    class="form-control"
+                                    id="commentairesTextarea"
+                                    placeholder="Commentaires sur le prospect"
+                                    rows="5"></textarea></div>
+                            <legend class="border-bottom mb-4 mt-4">Partie
+                                adresse
+                            </legend>
+                            <div class="form-group col-md-3"><label
+                                    for="numeroRueInput">Numero
+                                Rue</label><input class="form-control"
+                                                  id="numeroRueInput"
+                                                  pattern="(?:\d{0,3} +(bis|ter|quat)|(?:^|\b))|(?:\b\d{0,3}[ab]*\b)"
+                                                  placeholder="Numero Rue" required=""
+                                                  size="15"
+                                                  type="text" value="80 ter">
+                            </div>
+                            <div class="form-group col-md-9"><label
+                                    for="nomRueInput">Nom Rue</label><input
+                                    class="form-control" id="nomRueInput"
+                                    pattern="\b([a-zA-Z]+(?:[.\- ']*[a-zA-Z]+)*)\b" placeholder="Nom Rue" required=""
+                                    size="30"
+                                    type="text" value="Quai Voltaire"></div>
+                            <div class="form-group col-md-2"><label
+                                    for="codePostalInput">Code
+                                Postal</label><input class="form-control"
+                                                     id="codePostalInput"
+                                                     pattern="\b\d{5}\b"
+                                                     placeholder="Code Postal" required=""
+                                                     size="5"
+                                                     type="text" value="95870">
+                            </div>
+                            <div class="form-group col-md-10"><label
+                                    for="villeInput">Ville</label><input
+                                    class="form-control" id="villeInput"
+                                    pattern="\b([a-zA-Z]+(?:[.\- ']*[a-zA-Z]+)*)\b" placeholder="Ville" required=""
+                                    size="30"
+                                    type="text" value="Bezons"></div>
+                            <legend class="border-bottom mb-4 mt-4">Partie
+                                client
+                            </legend>
+                            <div class="form-group col-md-6"><label
+                                    for="dateProspectionInput">Date
+                                Prospection</label><input class="form-control"
+                                                          id="dateProspectionInput"
+                                                          placeholder="Date Prospection"
+                                                          required=""
+                                                          size="10"
+                                                          type="date"
+                                                          value="2024-05-28">
+                            </div>
+                            <div class="form-group col-md-6"><label
+                                    for="prospectInteresseInput">Prospect
+                                Interesse</label>
+                                <div class="checkbox-custom"><input
+                                        class="form-control"
+                                        id="prospectInteresseInput"
+                                        type="checkbox"><label
+                                        for="prospectInteresseInput"></label>
+                                </div>
+                            </div>
                             <hr class="mt-4">
                             <div class="form-group col-md-12">
                                 <button class="btn btn-primary float-end">
-                                    Envoyer
+                                    Sauvegarder
                                 </button>
                             </div>
                         </fieldset>
@@ -13434,7 +13500,7 @@
                         <div class="col-4">Done with <a
                                 href="https://getbootstrap.com/">Bootstrap</a>
                         </div>
-                        <div class="col-4"><a href="./contact.html">Nous
+                        <div class="col-4"><a href="../contact.html">Nous
                             contacter</a>
                         </div>
                         <div class="col-4"><a href="/sitemap.xml">Plan du
@@ -13446,7 +13512,7 @@
         </div>
     </div>
 </div>
-<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/js/bootstrap.bundle.min.js"></script>
 
 
 </body>

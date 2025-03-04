@@ -2,24 +2,24 @@
 
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-	<!-- Accueil -->
-	<url>
-		<loc>http://localhost:63342/Front/index.html</loc>
-		<lastmod>2025-02-25</lastmod>
-		<changefreq>never</changefreq>
-		<priority>1.0</priority>
-	</url>
+    <!-- Accueil -->
+    <url>
+        <loc>http://localhost:63342/Front/index.html</loc>
+        <lastmod>2025-02-25</lastmod>
+        <changefreq>never</changefreq>
+        <priority>1.0</priority>
+    </url>
 
-	<!-- Clients -->
+    <!-- Clients -->
 
-	<!-- Prospects -->
+    <!-- Prospects -->
 
-	<!-- Contact -->
-	<url>
-		<loc>http://localhost:63342/Front/contact.html</loc>
-		<lastmod>2025-02-25</lastmod>
-		<changefreq>never</changefreq>
-		<priority>0.7</priority>
-	</url>
+    <!-- Contact -->
+    <url>
+        <loc>http://localhost:63342/Front/contact.html</loc>
+        <lastmod>2025-02-25</lastmod>
+        <changefreq>never</changefreq>
+        <priority>0.7</priority>
+    </url>
 
 </urlset>

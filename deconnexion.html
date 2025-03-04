@@ -8,7 +8,7 @@
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <meta content="#000000" name="theme-color">
     <meta content="Site de gestion de clients" name="description">
-    <title>Contact | Reverso</title>
+    <title>Connexion | Reverso</title>
     <script defer="" src="/static/js/bundle.js"></script>
     <style>.App {
         text-align: center;
@@ -725,7 +725,7 @@
     }
 
     .blockquote-footer::before {
-        content: "— "
+        content: "—&nbsp;"
     }
 
     .img-fluid {
@@ -13309,7 +13309,7 @@
 <noscript>You need to enable JavaScript to run this app.</noscript>
 <div id="root">
     <div id="application">
-        <div class="contact-page">
+        <div class="disconnection-page">
             <header aria-label="Header" class="header">
                 <nav aria-label="navbar"
                      class="navbar navbar-expand-lg fixed-top">
@@ -13387,37 +13387,18 @@
             </header>
             <main>
                 <article>
-                    <header><h1>Contact</h1></header>
+                    <header><h1>Deconnexion</h1></header>
                     <section class="container" id="content"><span
-                            class="handlewidth">Vous souhaitez nous contacter pour un besoin bien précis ? Veuillez utiliser le formulaire suivant.</span>
+                            class="handlewidth">Souhaitez-vous vous déconnecter de l'application ?</span>
                     </section>
                     <form action="#" method="post">
-                        <fieldset class="row modal-dialog-centered">
-                            <div class="form-group col-md-6"><label
-                                    for="prenomInput">Prenom</label><input
-                                    class="form-control" id="prenomInput"
-                                    pattern="^[A-Za-zÀ-ÿ' \-]+$" placeholder="Prenom" required=""
-                                    size="30" type="text">
-                            </div>
-                            <div class="form-group col-md-6"><label
-                                    for="nomInput">Nom</label><input
-                                    class="form-control" id="nomInput"
-                                    pattern="^[A-Za-zÀ-ÿ' \-]+$" placeholder="Nom" required=""
-                                    size="30" type="text">
-                            </div>
-                            <div class="form-group col-md-6"><label
-                                    for="adresseMailInput">Adresse
-                                Mail</label><input class="form-control"
-                                                   id="adresseMailInput"
-                                                   pattern="^[A-Za-z0-9._%+\-]+@[A-Za-z0-9]+.[A-Za-z0-9.\-]{2,}"
-                                                   placeholder="Adresse Mail" required=""
-                                                   size="30"
-                                                   type="text"></div>
-                            <div class="form-group col-md-12"><label
-                                    for="messageTextarea">Message</label><textarea
-                                    class="form-control" id="messageTextarea"
-                                    placeholder="Le contenu de votre message"
-                                    required="" rows="10"></textarea></div>
+                        <fieldset class=" modal-dialog-centered">
+                            <button class="btn btn-success col-md-2"
+                                    name="answer">Oui
+                            </button>
+                            <button class="btn btn-danger col-md-2"
+                                    name="answer">Non
+                            </button>
                             <hr class="mt-4">
                             <div class="form-group col-md-12">
                                 <button class="btn btn-primary float-end">

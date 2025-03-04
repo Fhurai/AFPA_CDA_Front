@@ -150,6 +150,7 @@ form .checkbox-custom label {
   width: 10rem;
   height: 2.4rem;
   border-radius: var(--bs-border-radius);
+  cursor: pointer;
 }
 form .checkbox-custom label:after {
   content: "Non";
