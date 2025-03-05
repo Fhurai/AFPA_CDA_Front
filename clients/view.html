@@ -1,16 +1,14 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <link href="/favicon.ico" rel="icon">
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="../assets/css/fonts.css" rel="stylesheet">
     <link href="../assets/css/app.min.css" rel="stylesheet">
+    <link href="../assets/css/leaflet.css" rel="stylesheet"/>
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <meta content="#000000" name="theme-color">
     <meta content="Site de gestion de clients" name="description">
-    <link href="/manifest.json" rel="manifest">
     <title>View Client | Reverso</title>
-    <script defer="" src="/static/js/bundle.js"></script>
     <style>.App {
         text-align: center;
     }
@@ -13433,8 +13431,9 @@
                                     rows="5">La drogue avec Trails</textarea>
                             </div>
                             <legend class="border-bottom mb-4 mt-4">Partie
-                                adresse - Géolocalisation : 6.174426,49.128894 -
+                                adresse
                             </legend>
+                            <div id="map"></div>
                             <div class="form-group col-md-3"><label
                                     for="numeroRueInput">Numero
                                 Rue</label><input class="form-control"
@@ -13513,7 +13512,9 @@
     </div>
 </div>
 <script src="../assets/js/bootstrap.bundle.min.js"></script>
-
-
+<!-- Make sure you put this AFTER Leaflet's CSS -->
+<script src="../assets/js/leaflet.js"></script>
+<script src="../assets/js/events.js"></script>
+<script src="../assets/js/utilities.js"></script>
 </body>
 </html>

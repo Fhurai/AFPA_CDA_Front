@@ -125,6 +125,9 @@ form {
 form textarea {
   resize: none;
 }
+form textarea:disabled::placeholder {
+  color: transparent;
+}
 form .form-control {
   background-color: var(--gc-primary-color);
   color: var(--gc-primary-contrast-color);
@@ -162,6 +165,9 @@ form .checkbox-custom input:checked + label {
 }
 form .checkbox-custom input:checked + label:after {
   content: "Oui";
+}
+form .leaflet-container {
+  height: 20rem;
 }
 div.hovertable {
   background-color: var(--gc-primary-contrast-color);
