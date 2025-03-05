@@ -6,6 +6,10 @@ form {
 
 	textarea {
 		resize: none;
+
+        &:disabled::placeholder{
+            color: transparent;
+        }
 	}
 
 	.form-control {
@@ -56,5 +60,9 @@ form {
                 content: "Oui";
             }
         }
+    }
+
+    .leaflet-container{
+        height: 20rem;
     }
 }

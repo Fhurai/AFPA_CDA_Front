@@ -4,14 +4,23 @@ import {Prospect} from "../../model/Prospect";
 import Strings from "../../utilities/Strings";
 import Input from "./input";
 import Textarea from "./textarea";
+import {MapContainer, Marker, TileLayer} from "react-leaflet";
+import 'leaflet/dist/leaflet.css';
+import {Icon, LatLng} from "leaflet";
+import MarkerClusterGroup from "react-leaflet-markercluster";
+import Meteo from "../../utilities/Meteo";
 
-interface FormState {
-  geometry: string,
-  temperature: string
+export interface FormState {
+  geometry: number[],
+  temperature: number,
+  humidite: number,
+  pluie: number,
+  vent: number,
+  nebulosite: number
 }
 
 interface FormProps {
-  typePage?: string;
+  typePage: string;
   client?: Client;
   prospect?: Prospect;
 }
@@ -22,25 +31,32 @@ export default class Form extends React.Component<FormProps, FormState> {
   constructor(props: FormProps) {
     super(props);
     this.state = {
-      geometry: "",
-      temperature: "",
+      geometry: [],
+      temperature: 0,
+      humidite: 0,
+      pluie: 0,
+      vent: 0,
+      nebulosite: 0
     };
   }
 
   componentDidMount() {
-    const {typePage, client, prospect} = this.props;
+    const {typePage} = this.props;
     if (typePage === "view") {
       this.getGeolocalisation()
         .then(r => {
-          this.getMeteo(r.split(":")[1].trim());
+          this.getMeteo(r.toString())
+            .catch((error) => {
+              console.error(error);
+            });
         })
     }
   }
 
   async getGeolocalisation() {
-    const {typePage, client, prospect} = this.props;
+    const {client, prospect} = this.props;
     let adresse: string = "";
-    let ret: string = "";
+    let ret: number[] = [];
 
     if (client !== null) {
       adresse = client?.adresse.toString() as string;
@@ -58,13 +74,13 @@ export default class Form extends React.Component<FormProps, FormState> {
       }
 
       const json = await response.json();
-      ret = "- Géolocalisation : " + json.features[0].geometry.coordinates[1] + "," + json.features[0].geometry.coordinates[0];
+      ret = [json.features[0].geometry.coordinates[1], json.features[0].geometry.coordinates[0]];
       this.setState({
         geometry: ret
       });
     } catch (error: any) {
       this.setState({
-        geometry: ""
+        geometry: []
       });
       console.error(error.message);
     }
@@ -80,29 +96,80 @@ export default class Form extends React.Component<FormProps, FormState> {
     }
 
     try {
-      const datetime = new Date().toISOString();
+      const date: Date = new Date();
+      let dateString = date.toISOString().split("T")[0];
       const json = await response.json();
-      console.log(json[datetime.split("T")[0] + " 10:00:00"]);
+
+      if(date.getHours() < 1){
+        dateString += " 01:00:00";
+      }else if(date.getHours() > 1 && date.getHours() < 4){
+        dateString += " 04:00:00";
+      }else if(date.getHours() > 4 && date.getHours() < 7){
+        dateString += " 07:00:00";
+      }else if(date.getHours() > 7 && date.getHours() < 10){
+        dateString += " 10:00:00";
+      }else if(date.getHours() > 10 && date.getHours() < 13){
+        dateString += " 13:00:00";
+      }else if(date.getHours() > 13 && date.getHours() < 16){
+        dateString += " 16:00:00";
+      }else if(date.getHours() > 16 && date.getHours() < 19){
+        dateString += " 19:00:00";
+      }else if(date.getHours() > 19 && date.getHours() < 22){
+        dateString += " 22:00:00";
+      }else if(date.getHours() > 22){
+        date.setDate(date.getDate() + 1);
+        dateString = date.toISOString().split("T")[0] + "01:00:00";
+      }
 
       this.setState({
-        temperature: " - T° : " + Math.floor(json[datetime.split("T")[0] + " 10:00:00"].temperature["sol"] - 273.15).toString() + "°C"
+        temperature: Math.floor(json[dateString].temperature["sol"] - 273.15),
+        humidite: Math.floor(json[dateString].humidite["2m"]),
+        pluie: Math.floor(json[dateString].pluie),
+        vent: Math.floor(json[dateString].vent_moyen["10m"]),
+        nebulosite: Math.floor(json[dateString].nebulosite["totale"]),
       });
 
       return json;
     } catch (error: any) {
       this.setState({
-        temperature: ""
+        temperature: 0,
+        humidite: 0,
+        pluie: 0,
+        vent: 0,
+        nebulosite: 0
       });
       console.error(error.message);
       return "";
     }
   }
 
+  delete(event: React.MouseEvent<HTMLButtonElement>){
+    event.preventDefault();
+
+    if(window.confirm("Confirmezvous la suppression de la société ?")){
+      console.log("Redirection");
+    }else{
+      console.log("Stay");
+    }
+  }
+
+  save(event: React.MouseEvent<HTMLButtonElement>){
+    event.preventDefault();
+    console.log("Save");
+  }
+
   render() {
     const {typePage, client, prospect} = this.props;
     const disabled = typePage === "view" || typePage === "delete";
 
-    return (
+    const icon = new Icon({
+      iconUrl : 'https://unpkg.com/leaflet@1.4.0/dist/images/marker-icon.png',
+      iconSize : [35,55], // size of the icon
+      iconAnchor : [0,0], // point of the icon which will correspond to marker's location
+      popupAnchor : [-3, -76] // point from which the popup should open relative to the iconAnchor
+    });
+
+    return (<>
       <form method="post" action="#">
         <fieldset className={(typePage !== "deconnexion" ? "row" : "") + " modal-dialog-centered"}>
           {/**
@@ -147,9 +214,20 @@ export default class Form extends React.Component<FormProps, FormState> {
                       placeholder={`Commentaires sur le ${client !== null ? "client" : "prospect"}`} sizeRows={5}
                       disabled={disabled} value={client !== null ? client?.commentaires : prospect?.commentaires}/>
 
-            <legend className="border-bottom mb-4 mt-4">Partie
-              adresse {typePage === "view" ? this.state.geometry + this.state.temperature : ""}</legend>
-
+            <legend className="border-bottom mb-4 mt-4 d-flex">Partie adresse{typePage === "view" ?
+              <> - {Meteo.getType(this.state)} &nbsp;<div className={"btn btn-primary"} data-bs-toggle="modal" data-bs-target="#modal">Voir détails</div></> : ""}</legend>
+            {
+              this.state.geometry.toString() !== "" &&
+              <MapContainer center={new LatLng(this.state.geometry[0] ?? 48.8575, this.state.geometry[1] ?? 2.3514)} zoom={16}>
+                <TileLayer
+                  attribution='&copy; <a href="https://osm.org/copyright%22%3EOpenStreetMap</a> contributors'
+                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+                <MarkerClusterGroup>
+                  <Marker icon={icon} position={new LatLng(this.state.geometry[0] ?? 48.8575, this.state.geometry[1] ?? 2.3514)} />
+                </MarkerClusterGroup>
+              </MapContainer>
+            }
 
 
             <Input type={"text"} name={"numeroRue"} className={"col-md-3"} sizeInput={15} disabled={disabled}
@@ -188,12 +266,54 @@ export default class Form extends React.Component<FormProps, FormState> {
            * Partie commune
            */}
           <hr className={"mt-4"}/>
-          {typePage !== "view" && <div className="form-group col-md-12">
-            <button
-              className={"btn btn-primary float-end"}>{!this.consultPages.includes(typePage ?? "") ? "Envoyer" : (typePage === "delete" ? "Supprimer" : "Sauvegarder")}</button>
-          </div>}
+          <div className="form-group col-md-12">
+            {
+              <>
+                {typePage === "view" && ""}
+                {typePage === "delete" && <button onClick={this.delete} className={"btn btn-danger float-end"}>Supprimer</button>}
+                {["create", "update"].includes(typePage) &&
+                  <button onClick={this.save} className={"btn btn-primary float-end"}>Sauvegarder</button>}
+              </>
+            }
+          </div>
         </fieldset>
       </form>
+        <div id={"modal"} className={"modal fade"}  aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabIndex={-1}>
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h1 className="modal-title fs-5" id="exampleModalLabel">{Meteo.getType(this.state)}</h1>
+                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div className="modal-body">
+                <div>
+                  <h5>Température</h5>
+                  {this.state.temperature}°C - <>{Meteo.getTemperature(this.state.temperature)}</>
+                </div>
+                <div>
+                  <h5>Pluie</h5>
+                  {this.state.pluie}mm - <>{Meteo.getPluie(this.state.pluie)}</>
+                </div>
+                <div>
+                  <h5>Vent</h5>
+                  {this.state.vent}km/h - <>{Meteo.getVent(this.state.vent)}</>
+                </div>
+                <div>
+                   <h5>Nébulosité</h5>
+                  {this.state.nebulosite}% - <>{Meteo.getNebulosite(this.state.nebulosite)}</>
+                </div>
+                <div>
+                   <h5>Humidité</h5>
+                  {this.state.humidite}% - <>{Meteo.getHumidite(this.state.humidite)}</>
+                </div>
+              </div>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </>
     );
   }
 }
