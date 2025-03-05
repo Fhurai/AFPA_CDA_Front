@@ -100,21 +100,21 @@ export default class Form extends React.Component<FormProps, FormState> {
       let dateString = date.toISOString().split("T")[0];
       const json = await response.json();
 
-      if(date.getHours() < 1){
+      if(date.getHours() <= 1){
         dateString += " 01:00:00";
-      }else if(date.getHours() > 1 && date.getHours() < 4){
+      }else if(date.getHours() > 1 && date.getHours() <= 4){
         dateString += " 04:00:00";
-      }else if(date.getHours() > 4 && date.getHours() < 7){
+      }else if(date.getHours() > 4 && date.getHours() <= 7){
         dateString += " 07:00:00";
-      }else if(date.getHours() > 7 && date.getHours() < 10){
+      }else if(date.getHours() > 7 && date.getHours() <= 10){
         dateString += " 10:00:00";
-      }else if(date.getHours() > 10 && date.getHours() < 13){
+      }else if(date.getHours() > 10 && date.getHours() <= 13){
         dateString += " 13:00:00";
-      }else if(date.getHours() > 13 && date.getHours() < 16){
+      }else if(date.getHours() > 13 && date.getHours() <= 16){
         dateString += " 16:00:00";
-      }else if(date.getHours() > 16 && date.getHours() < 19){
+      }else if(date.getHours() > 16 && date.getHours() <= 19){
         dateString += " 19:00:00";
-      }else if(date.getHours() > 19 && date.getHours() < 22){
+      }else if(date.getHours() > 19 && date.getHours() <= 22){
         dateString += " 22:00:00";
       }else if(date.getHours() > 22){
         date.setDate(date.getDate() + 1);
