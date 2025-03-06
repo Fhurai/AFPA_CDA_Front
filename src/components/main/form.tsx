@@ -12,11 +12,11 @@ import Meteo from "../../utilities/Meteo";
 
 export interface FormState {
   geometry: number[],
-  temperature: number,
-  humidite: number,
-  pluie: number,
-  vent: number,
-  nebulosite: number
+  temperature: [number, string],
+  humidite: [number, string],
+  pluie: [number, string],
+  vent: [number, string],
+  nebulosite: [number, string]
 }
 
 interface FormProps {
@@ -32,31 +32,31 @@ export default class Form extends React.Component<FormProps, FormState> {
     super(props);
     this.state = {
       geometry: [],
-      temperature: 0,
-      humidite: 0,
-      pluie: 0,
-      vent: 0,
-      nebulosite: 0
+      temperature: [0, ""],
+      humidite: [0, ""],
+      pluie: [0, ""],
+      vent: [0, ""],
+      nebulosite: [0, ""]
     };
   }
 
   componentDidMount() {
     const {typePage} = this.props;
     if (typePage === "view") {
-      this.getGeolocalisation()
+      this.searchGeolocalisation()
         .then(r => {
+          console.log(r);
           this.getMeteo(r.toString())
-            .catch((error) => {
-              console.error(error);
-            });
-        })
+            .then(r => {
+              console.log(r);
+          })
+        });
     }
   }
 
-  async getGeolocalisation() {
+  async searchGeolocalisation(): Promise<[number, number]> {
     const {client, prospect} = this.props;
     let adresse: string = "";
-    let ret: number[] = [];
 
     if (client !== null) {
       adresse = client?.adresse.toString() as string;
@@ -66,25 +66,19 @@ export default class Form extends React.Component<FormProps, FormState> {
       adresse = prospect?.adresse.toString() as string;
     }
 
-    try {
-      const response = await fetch("https://api-adresse.data.gouv.fr/search/?q=" + adresse.replaceAll(" ", "+"));
+    const response = await fetch("https://api-adresse.data.gouv.fr/search/?q=" + adresse.replaceAll(" ", "+"));
 
-      if (!response.ok) {
-        throw new Error(`Response status: ${response.status}`);
-      }
-
-      const json = await response.json();
-      ret = [json.features[0].geometry.coordinates[1], json.features[0].geometry.coordinates[0]];
-      this.setState({
-        geometry: ret
-      });
-    } catch (error: any) {
-      this.setState({
-        geometry: []
-      });
-      console.error(error.message);
+    if (!response.ok) {
+      throw new Error(`Response status: ${response.status}`);
     }
-    return ret;
+
+    const json = await response.json();
+
+    this.setState({
+      geometry: [json.features[0].geometry.coordinates[1], json.features[0].geometry.coordinates[0]]
+    });
+
+    return [json.features[0].geometry.coordinates[1], json.features[0].geometry.coordinates[0]];
   }
 
   async getMeteo(coordinates: string) {
@@ -122,24 +116,24 @@ export default class Form extends React.Component<FormProps, FormState> {
       }
 
       this.setState({
-        temperature: Math.floor(json[dateString].temperature["sol"] - 273.15),
-        humidite: Math.floor(json[dateString].humidite["2m"]),
-        pluie: Math.floor(json[dateString].pluie),
-        vent: Math.floor(json[dateString].vent_moyen["10m"]),
-        nebulosite: Math.floor(json[dateString].nebulosite["totale"]),
+        temperature: Meteo.getTemperature(json[dateString]),
+        humidite: Meteo.getHumidite(json[dateString]),
+        pluie: Meteo.getPluie(json[dateString]),
+        vent: Meteo.getVent(json[dateString]),
+        nebulosite: Meteo.getNebulosite(json[dateString]),
       });
 
-      return json;
+      return [dateString, Meteo.getTypeMeteo(this.state.temperature[0], this.state.pluie[0], this.state.vent[0], this.state.nebulosite[0], this.state.humidite[0])];
     } catch (error: any) {
       this.setState({
-        temperature: 0,
-        humidite: 0,
-        pluie: 0,
-        vent: 0,
-        nebulosite: 0
+        temperature: [0, ""],
+        humidite: [0, ""],
+        pluie: [0, ""],
+        vent: [0, ""],
+        nebulosite: [0, ""]
       });
       console.error(error.message);
-      return "";
+      return ["", ""];
     }
   }
 
@@ -215,7 +209,8 @@ export default class Form extends React.Component<FormProps, FormState> {
                       disabled={disabled} value={client !== null ? client?.commentaires : prospect?.commentaires}/>
 
             <legend className="border-bottom mb-4 mt-4 d-flex">Partie adresse{typePage === "view" ?
-              <> - {Meteo.getType(this.state)} &nbsp;<div className={"btn btn-primary"} data-bs-toggle="modal" data-bs-target="#modal">Voir détails</div></> : ""}</legend>
+              <> - {Meteo.getTypeMeteo(this.state.temperature[0], this.state.pluie[0], this.state.vent[0], this.state.nebulosite[0], this.state.humidite[0])} &nbsp;
+                <div className={"btn btn-primary"} data-bs-toggle="modal" data-bs-target="#modal">Voir détails</div></> : ""}</legend>
             {
               this.state.geometry.toString() !== "" &&
               <MapContainer center={new LatLng(this.state.geometry[0] ?? 48.8575, this.state.geometry[1] ?? 2.3514)} zoom={16}>
@@ -282,29 +277,29 @@ export default class Form extends React.Component<FormProps, FormState> {
           <div className="modal-dialog">
             <div className="modal-content">
               <div className="modal-header">
-                <h1 className="modal-title fs-5" id="exampleModalLabel">{Meteo.getType(this.state)}</h1>
+                <h1 className="modal-title fs-5" id="exampleModalLabel">{Meteo.getTypeMeteo(this.state.temperature[0], this.state.pluie[0], this.state.vent[0], this.state.nebulosite[0], this.state.humidite[0])}</h1>
                 <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div className="modal-body">
                 <div>
                   <h5>Température</h5>
-                  {this.state.temperature}°C - <>{Meteo.getTemperature(this.state.temperature)}</>
+                  {this.state.temperature[0]}°C - <>{this.state.temperature[1]}</>
                 </div>
                 <div>
                   <h5>Pluie</h5>
-                  {this.state.pluie}mm - <>{Meteo.getPluie(this.state.pluie)}</>
+                  {this.state.pluie[0]}mm - <>{this.state.pluie[1]}</>
                 </div>
                 <div>
                   <h5>Vent</h5>
-                  {this.state.vent}km/h - <>{Meteo.getVent(this.state.vent)}</>
+                  {this.state.vent[0]}km/h - <>{this.state.vent[1]}</>
                 </div>
                 <div>
                    <h5>Nébulosité</h5>
-                  {this.state.nebulosite}% - <>{Meteo.getNebulosite(this.state.nebulosite)}</>
+                  {this.state.nebulosite[0]}% - <>{this.state.nebulosite[1]}</>
                 </div>
                 <div>
                    <h5>Humidité</h5>
-                  {this.state.humidite}% - <>{Meteo.getHumidite(this.state.humidite)}</>
+                  {this.state.humidite[0]}% - <>{this.state.humidite[1]}</>
                 </div>
               </div>
               <div className="modal-footer">
