@@ -1,8 +1,15 @@
+/**
+ * @fileoverview Event handlers for different page interactions
+ * @description Sets up event listeners when DOM is loaded, including form validation,
+ * table search, and geolocation with weather display
+ * @requires utilities.js for validation, search, geolocation, and weather functions
+ */
 document.addEventListener("DOMContentLoaded", function () {
     genDOM();
 
     /**
-     * Sécurité pour les champs chiffre d'affaires et nb employés.
+     * @description Sets up form validation for client create and update pages
+     * @requires securiteChiffreAffaires(), securiteNbEmployes() from utilities.js
      */
     if (["Front/clients/create.html", "Front/clients/update.html"].includes(getCurrentPage())) {
         document.querySelector("main form button").addEventListener("click", function (e) {
@@ -27,7 +34,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     /**
-     * Recherche dans le tableau Hovertable
+     * @description Sets up search functionality for hovertable elements
+     * @requires detectHovertable(), searchValueHovertable() from utilities.js
      */
     if (detectHovertable()) {
         Array.from(document.querySelectorAll(".hovertable input")).forEach((input) => {
@@ -45,7 +53,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     /**
-     * Géolocation + Meteo.
+     * @description Sets up geolocation and weather display for client and prospect view pages
+     * @requires searchGeolocalisation(), createLeafletMap(), createMeteoModale(),
+     *          getTemperature(), getPluie(), getVent(), getNebulosite(),
+     *          getHumidite(), getTypeMeteo() from utilities.js
+     * @requires DOM elements with IDs: resultT, resultP, resultV, resultN, resultH,
+     *           modalMeteo, labelAdresseMeteo
      */
     if (["Front/clients/view.html", "Front/prospects/view.html"].includes(getCurrentPage())) {
         searchGeolocalisation()

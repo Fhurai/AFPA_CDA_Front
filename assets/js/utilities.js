@@ -1,3 +1,8 @@
+/**
+ * @function getCurrentPage
+ * @description Extracts the current page from the URL pathname
+ * @returns {string} String representing the current page path
+ */
 function getCurrentPage() {
     const pathArray = window.location.pathname.split("/");
     let page;
@@ -14,18 +19,42 @@ function getCurrentPage() {
     return page;
 }
 
+/**
+ * @function securiteChiffreAffaires
+ * @description Validates if business revenue input is below 200
+ * @returns {boolean} True if revenue is less than 200, false otherwise
+ * @requires Form element with ID "chiffreAffairesInput"
+ */
 function securiteChiffreAffaires() {
     return document.querySelector("form input#chiffreAffairesInput").value < 200;
 }
 
+/**
+ * @function securiteNbEmployes
+ * @description Validates if employee count input is less than 1
+ * @returns {boolean} True if employee count is less than 1, false otherwise
+ * @requires Form element with ID "nbEmployesInput"
+ */
 function securiteNbEmployes() {
     return document.querySelector("form input#nbEmployesInput").value < 1;
 }
 
+/**
+ * @function detectHovertable
+ * @description Checks if a hovertable element exists on the page
+ * @returns {boolean} True if an element with class "hovertable" exists, false otherwise
+ */
 function detectHovertable() {
     return document.querySelector(".hovertable") !== null;
 }
 
+/**
+ * @function searchValueHovertable
+ * @description Filters table rows based on search value in a specific column
+ * @param {string} value - String to search for
+ * @param {number} column - Index of the column to search in
+ * @requires Hovertable element with class "hovertable"
+ */
 function searchValueHovertable(value, column) {
     Array.from(document.querySelectorAll(".hovertable .hovertable-body .hovertable-row")).forEach((row) => {
         let searchFalse;
@@ -50,6 +79,11 @@ function searchValueHovertable(value, column) {
     hideRowIfMarked();
 }
 
+/**
+ * @function hideRowIfMarked
+ * @description Hides table rows marked with searchFalse attribute
+ * @requires Rows with searchFalse attributes
+ */
 function hideRowIfMarked() {
     Array.from(document.querySelectorAll(".hovertable .hovertable-body .hovertable-row")).forEach((row) => {
         console.log(row.children[0].innerHTML.trim() + " : " + row.getAttribute("searchFalse"));
@@ -67,6 +101,13 @@ function hideRowIfMarked() {
     });
 }
 
+/**
+ * @function searchGeolocalisation
+ * @description Gets coordinates from address using French government API
+ * @returns {Promise<Array>} Promise resolving to an array of [latitude, longitude]
+ * @requires Form inputs with IDs "numeroRueInput", "nomRueInput", "codePostalInput", "villeInput"
+ * @uses API at "https://api-adresse.data.gouv.fr/search/"
+ */
 async function searchGeolocalisation() {
     const adresse = document.getElementById("numeroRueInput").value + " " +
         document.getElementById("nomRueInput").value + " " +
@@ -84,6 +125,14 @@ async function searchGeolocalisation() {
     return [json.features[0].geometry.coordinates[1], json.features[0].geometry.coordinates[0]];
 }
 
+/**
+ * @function createLeafletMap
+ * @description Creates and displays a Leaflet map centered on provided coordinates
+ * @param {Array} array - Array containing [latitude, longitude]
+ * @requires Leaflet.js library
+ * @requires Form inputs with IDs "numeroRueInput", "nomRueInput", "codePostalInput", "villeInput", "raisonSocialeInput"
+ * @requires Element with ID "map" to render the map
+ */
 function createLeafletMap(array) {
     const adresse = document.getElementById("numeroRueInput").value + " " +
         document.getElementById("nomRueInput").value + " " +
@@ -102,6 +151,13 @@ function createLeafletMap(array) {
     marker.bindPopup(document.getElementById("raisonSocialeInput").value + "<br/>" + adresse).openPopup();
 }
 
+/**
+ * @function createMeteoModale
+ * @description Fetches weather data for specified coordinates
+ * @param {Array} array - Array containing [latitude, longitude]
+ * @returns {Promise<Object>} Promise resolving to weather data for current time period
+ * @uses InfoClimat API
+ */
 async function createMeteoModale(array) {
     const url = "https://www.infoclimat.fr/public-api/gfs/json?_ll=" + array[0] + "," + array[1] +
         "&_auth=Bx0DFAV7U3FRfFZhUCYFLAdvAjcLfQUiAX1QM1w5XyJWPVAxBGRQNgRqWicAL1dhUH0EZww3CTkHbAJ6WigDYgdtA28FblM0UT5WM1B%2FBS4HPQJnCzwFNAFrUChcLl89Vj1QPAR5UDAEaFo5AC5XZVBmBHoMMgkxB2wCelooA2EHYwNjBWdTMVE3VjNQZAUxBzICfQsrBTsBZVBkXDZfPFY8UGYEMlBhBGlaPAA4VzBQZAR6DDEJMQdgAmNaMANjB2ADYwV5Uy5RR1ZHUH0FcQd2AjcLcgUgATdQaVxl&_c=83c427140f87bd975fcfb36035f83e4b";
@@ -145,6 +201,13 @@ async function createMeteoModale(array) {
     }
 }
 
+/**
+ * @function getTemperature
+ * @description Extracts and categorizes temperature data
+ * @param {Object} json - Weather data from API
+ * @returns {Array} [numerical value, descriptive category]
+ * @categories "Très froid", "Froid", "Frais", "Doux", "Chaud/Canicule"
+ */
 function getTemperature(json) {
     const valeur = Math.floor(json.temperature["sol"] - 273.15);
 
@@ -157,6 +220,13 @@ function getTemperature(json) {
     return [valeur, libelle];
 }
 
+/**
+ * @function getPluie
+ * @description Extracts and categorizes precipitation data
+ * @param {Object} json - Weather data from API
+ * @returns {Array} [numerical value, descriptive category]
+ * @categories "Aucune", "Très faible", "Faible", "Modérée", "Forte", "Très forte"
+ */
 function getPluie(json) {
     const valeur = Math.floor(json.pluie);
 
@@ -170,6 +240,13 @@ function getPluie(json) {
     return [valeur, libelle];
 }
 
+/**
+ * @function getVent
+ * @description Extracts and categorizes wind data
+ * @param {Object} json - Weather data from API
+ * @returns {Array} [numerical value, descriptive category]
+ * @categories "Calme", "Léger", "Modéré", "Fort", "Tempête/Ouragan"
+ */
 function getVent(json) {
     const valeur = Math.floor(json.vent_moyen["10m"]);
 
@@ -182,6 +259,13 @@ function getVent(json) {
     return [valeur, libelle];
 }
 
+/**
+ * @function getNebulosite
+ * @description Extracts and categorizes cloud cover data
+ * @param {Object} json - Weather data from API
+ * @returns {Array} [numerical value, descriptive category]
+ * @categories "Dégagé", "Partiellement nuageux", "Nuageux", "Très nuageux", "Brouillard"
+ */
 function getNebulosite(json) {
     const valeur = Math.floor(json.nebulosite["totale"]);
 
@@ -194,6 +278,13 @@ function getNebulosite(json) {
     return [valeur, libelle];
 }
 
+/**
+ * @function getHumidite
+ * @description Extracts and categorizes humidity data
+ * @param {Object} json - Weather data from API
+ * @returns {Array} [numerical value, descriptive category]
+ * @categories "Très sec", "Sec", "Modéré", "Humide", "Très humide"
+ */
 function getHumidite(json) {
     const valeur = Math.floor(json.humidite["2m"]);
 
@@ -206,6 +297,16 @@ function getHumidite(json) {
     return [valeur, libelle];
 }
 
+/**
+ * @function getTypeMeteo
+ * @description Determines overall weather type based on multiple parameters
+ * @param {number} valueTemperature - Temperature value
+ * @param {number} valuePluie - Precipitation value
+ * @param {number} valueVent - Wind value
+ * @param {number} valueNebulosite - Cloud cover value
+ * @param {number} valueHumidite - Humidity value
+ * @returns {string} Description of overall weather condition
+ */
 function getTypeMeteo(valueTemperature, valuePluie, valueVent, valueNebulosite, valueHumidite) {
     if (valueTemperature >= 10 && valueTemperature < 30 &&
         valuePluie >= 0 && valuePluie < 2 &&

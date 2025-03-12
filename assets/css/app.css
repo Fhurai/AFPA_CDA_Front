@@ -297,6 +297,16 @@ div.hovertable div.hovertable-row div.hovertable-cell.longer {
   width: 25rem;
   max-width: 30%;
 }
+.modal .modal-dialog .modal-content {
+  background-color: var(--gc-primary-color);
+  color: var(--gc-primary-contrast-color);
+}
+.modal .modal-dialog .modal-content > .modal-header {
+  border-bottom: 1px solid var(--gc-primary-contrast-color);
+}
+.modal .modal-dialog .modal-content > .modal-footer {
+  border-top: 1px solid var(--gc-primary-contrast-color);
+}
 main {
   min-height: 80vh;
   margin: 10vh 5vh;
