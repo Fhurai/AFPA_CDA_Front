@@ -2,7 +2,11 @@ function getCurrentPage() {
     const pathArray = window.location.pathname.split("/");
     let page;
 
-    if (pathArray.length === 9) {
+    if (pathArray.length === 3) {
+        page = pathArray[1] + "/" + pathArray[2];
+    } else if (pathArray.length === 4) {
+        page = pathArray[1] + "/" + pathArray[2] + "/" + pathArray[3];
+    } else if (pathArray.length === 9) {
         page = pathArray[7] + "/" + pathArray[8];
     } else if (pathArray.length === 10) {
         page = pathArray[7] + "/" + pathArray[8] + "/" + pathArray[9];

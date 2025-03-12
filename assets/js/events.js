@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
+    genDOM();
+
     /**
      * Sécurité pour les champs chiffre d'affaires et nb employés.
      */
@@ -42,6 +44,9 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    /**
+     * Géolocation + Meteo.
+     */
     if (["Front/clients/view.html", "Front/prospects/view.html"].includes(getCurrentPage())) {
         searchGeolocalisation()
             .then(array => {
